@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -140,21 +141,29 @@ export default function Home() {
               title: 'Living & Decorating With A Cat',
               desc: 'Stylish spaces that work for both you and your pets.',
               color: '#B8A898',
+              href: '/journal/living-and-decorating-with-a-cat',
             },
-          ].map((article) => (
-            <div key={article.title} className="group cursor-pointer">
-              <div
-                className="aspect-[4/3] mb-6 overflow-hidden"
-                style={{ backgroundColor: article.color }}
-              >
-                {/* Replace with <img> when you have article photos */}
+          ].map((article) => {
+            const Card = (
+              <div key={article.title} className="group cursor-pointer">
+                <div
+                  className="aspect-[4/3] mb-6 overflow-hidden"
+                  style={{ backgroundColor: article.color }}
+                >
+                  {/* Replace with <img> when you have article photos */}
+                </div>
+                <h3 className="font-[family-name:var(--font-cormorant)] text-2xl text-[#3D2E1E] mb-2 group-hover:text-[#C17A50] transition-colors duration-200">
+                  {article.title}
+                </h3>
+                <p className="text-sm text-[#8B7355] leading-relaxed">{article.desc}</p>
               </div>
-              <h3 className="font-[family-name:var(--font-cormorant)] text-2xl text-[#3D2E1E] mb-2">
-                {article.title}
-              </h3>
-              <p className="text-sm text-[#8B7355] leading-relaxed">{article.desc}</p>
-            </div>
-          ))}
+            );
+            return article.href ? (
+              <Link key={article.title} href={article.href}>{Card}</Link>
+            ) : (
+              <div key={article.title}>{Card}</div>
+            );
+          })}
         </div>
       </section>
 
