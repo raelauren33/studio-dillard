@@ -1,65 +1,192 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
+    <main>
+
+      {/* Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#F5F0E8] shadow-sm' : 'bg-transparent'}`}>
+        <div className="flex justify-between items-center px-10 py-6">
+          <span className="font-[family-name:var(--font-cormorant)] text-xl tracking-[0.2em] uppercase text-[#3D2E1E]">
+            Studio Dillard
+          </span>
+          <div className="flex gap-10">
+            {['Projects', 'About', 'Contact'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-xs tracking-[0.2em] uppercase text-[#3D2E1E] hover:text-[#C17A50] transition-colors duration-200"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="relative h-screen w-full flex items-end" style={{ backgroundColor: '#A89880' }}>
+        {/* Replace this div with an <img> tag once you have your hero photo */}
+        <div className="absolute inset-0" style={{ backgroundColor: '#A89880' }} />
+        <div className="relative z-10 p-14 pb-20">
+          <h1 className="font-[family-name:var(--font-cormorant)] text-[7vw] leading-[1.1] text-[#F5F0E8] font-light">
+            Intentional spaces,<br />lived in deeply.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-6 text-[#F5F0E8] tracking-[0.3em] uppercase text-xs opacity-80">
+            Portland, Maine
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Tagline */}
+      <section className="py-28 px-8 text-center">
+        <p className="font-[family-name:var(--font-cormorant)] text-2xl tracking-[0.3em] text-[#C17A50] mb-8">
+          Sustainable · Stylish · Personal
+        </p>
+        <p className="max-w-lg mx-auto text-[#3D2E1E] leading-relaxed text-lg">
+          We blend mid-century modern restraint with layered, maximalist character to create
+          spaces that feel intentional, character-rich, and entirely your own.
+        </p>
+      </section>
+
+      {/* Projects */}
+      <section id="projects" className="px-8 pb-28">
+        <h2 className="font-[family-name:var(--font-cormorant)] text-5xl mb-12 text-[#3D2E1E] font-light">
+          Projects
+        </h2>
+        <div className="flex gap-4 h-[70vh]">
+          {/* Left: large */}
+          <div className="flex-[1.4] relative overflow-hidden group cursor-pointer bg-[#B8955A]">
+            {/* Replace bg color with your photo:
+                style={{ backgroundImage: 'url(/images/living-room.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} */}
+            <div className="absolute inset-0 bg-[#3D2E1E] opacity-0 group-hover:opacity-25 transition-opacity duration-500" />
+            <div className="absolute bottom-8 left-8">
+              <span className="font-[family-name:var(--font-cormorant)] text-3xl text-[#F5F0E8]">Living Room</span>
+            </div>
+          </div>
+          {/* Right: stacked */}
+          <div className="flex-1 flex flex-col gap-4">
+            <div className="flex-1 relative overflow-hidden group cursor-pointer bg-[#C4908A]">
+              {/* Replace bg color with your photo */}
+              <div className="absolute inset-0 bg-[#3D2E1E] opacity-0 group-hover:opacity-25 transition-opacity duration-500" />
+              <div className="absolute bottom-6 left-6">
+                <span className="font-[family-name:var(--font-cormorant)] text-3xl text-[#F5F0E8]">Bedroom</span>
+              </div>
+            </div>
+            <div className="flex-1 relative overflow-hidden group cursor-pointer bg-[#6B7C5C]">
+              {/* Replace bg color with your photo */}
+              <div className="absolute inset-0 bg-[#3D2E1E] opacity-0 group-hover:opacity-25 transition-opacity duration-500" />
+              <div className="absolute bottom-6 left-6">
+                <span className="font-[family-name:var(--font-cormorant)] text-3xl text-[#F5F0E8]">Office</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="grid grid-cols-2 min-h-[60vh]">
+        <div className="bg-[#D4C4B0]">
+          {/* Replace with: <img src="/images/about.jpg" className="w-full h-full object-cover" alt="Studio Dillard" /> */}
+        </div>
+        <div className="bg-[#3D2E1E] flex items-center px-16 py-20">
+          <div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-5xl text-[#F5F0E8] mb-8 font-light">
+              About
+            </h2>
+            <p className="text-[#D4C4B0] leading-relaxed text-lg mb-10">
+              Studio Dillard is an interior design studio based in Portland, Maine. We create
+              spaces that are sustainable, stylish, and deeply personal — rooted in mid-century
+              modern restraint with a layered, maximalist spirit.
+            </p>
+            <a
+              href="mailto:StudioDillard@outlook.com"
+              className="text-[#C17A50] text-xs tracking-[0.2em] uppercase border-b border-[#C17A50] pb-1 hover:text-[#F5F0E8] hover:border-[#F5F0E8] transition-colors duration-200"
+            >
+              Get in touch
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Journal */}
+      <section className="py-28 px-8">
+        <h2 className="font-[family-name:var(--font-cormorant)] text-5xl mb-16 text-[#3D2E1E] font-light">
+          Journal
+        </h2>
+        <div className="grid grid-cols-3 gap-10">
+          {[
+            {
+              title: 'Lighting',
+              desc: "How the right light transforms a room's entire feeling.",
+              color: '#D4C4B0',
+            },
+            {
+              title: "Finding Your Home's Style",
+              desc: 'A guide to discovering the aesthetic that feels like you.',
+              color: '#C4B5A0',
+            },
+            {
+              title: 'Living & Decorating With A Cat',
+              desc: 'Stylish spaces that work for both you and your pets.',
+              color: '#B8A898',
+            },
+          ].map((article) => (
+            <div key={article.title} className="group cursor-pointer">
+              <div
+                className="aspect-[4/3] mb-6 overflow-hidden"
+                style={{ backgroundColor: article.color }}
+              >
+                {/* Replace with <img> when you have article photos */}
+              </div>
+              <h3 className="font-[family-name:var(--font-cormorant)] text-2xl text-[#3D2E1E] mb-2">
+                {article.title}
+              </h3>
+              <p className="text-sm text-[#8B7355] leading-relaxed">{article.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer id="contact" className="bg-[#3D2E1E] py-20 px-10">
+        <div className="flex justify-between items-end">
+          <div>
+            <span className="font-[family-name:var(--font-cormorant)] text-4xl text-[#F5F0E8] block mb-3 font-light">
+              Studio Dillard
+            </span>
+            <p className="text-[#8B7355] text-sm tracking-widest">Portland, Maine</p>
+          </div>
+          <div className="text-right flex flex-col gap-3">
+            <a
+              href="mailto:StudioDillard@outlook.com"
+              className="text-[#C17A50] text-xs tracking-[0.2em] uppercase hover:text-[#F5F0E8] transition-colors duration-200"
+            >
+              StudioDillard@outlook.com
+            </a>
+            <a
+              href="https://www.pinterest.com"
+              className="text-[#C17A50] text-xs tracking-[0.2em] uppercase hover:text-[#F5F0E8] transition-colors duration-200"
+            >
+              Pinterest
+            </a>
+          </div>
+        </div>
+        <div className="mt-16 pt-8 border-t border-[#5C4A35]">
+          <p className="text-[#5C4A35] text-xs tracking-widest">© 2026 Studio Dillard. All rights reserved.</p>
+        </div>
+      </footer>
+
+    </main>
   );
 }
