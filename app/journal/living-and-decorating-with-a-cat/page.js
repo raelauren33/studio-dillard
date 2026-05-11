@@ -38,9 +38,9 @@ export default function LivingWithACat() {
     <main className="bg-[#F5F0E8] min-h-screen">
 
       {/* Nav */}
-      <nav className="bg-[#F5F0E8]">
+      <nav className="absolute top-0 left-0 right-0 z-10">
         <div className="flex justify-between items-center px-10 py-6">
-          <Link href="/" className="font-[family-name:var(--font-cormorant)] text-xl tracking-[0.2em] uppercase text-[#3D2E1E]">
+          <Link href="/" className="font-[family-name:var(--font-cormorant)] text-xl tracking-[0.2em] uppercase text-[#F5F0E8]">
             Studio Dillard
           </Link>
           <div className="flex gap-10">
@@ -48,7 +48,7 @@ export default function LivingWithACat() {
               <Link
                 key={item}
                 href={`/#${item.toLowerCase()}`}
-                className="text-xs tracking-[0.2em] uppercase text-[#3D2E1E] hover:text-[#C17A50] transition-colors duration-200"
+                className="text-xs tracking-[0.2em] uppercase text-[#F5F0E8] hover:text-[#C17A50] transition-colors duration-200"
               >
                 {item}
               </Link>
@@ -58,7 +58,7 @@ export default function LivingWithACat() {
       </nav>
 
       {/* Hero Image */}
-      <div className="w-full h-[60vh] overflow-hidden">
+      <div className="w-full h-[75vh] overflow-hidden">
         <img
           src="/images/cat-header.jpg"
           alt="Furlough lounging at home"
@@ -67,7 +67,7 @@ export default function LivingWithACat() {
       </div>
 
       {/* Article Header */}
-      <header className="px-10 pt-16 pb-12 max-w-3xl">
+      <div className="max-w-5xl mx-auto px-8 pt-16 pb-10">
         <Link
           href="/"
           className="text-xs tracking-[0.2em] uppercase text-[#C17A50] hover:text-[#3D2E1E] transition-colors duration-200 mb-10 block"
@@ -75,43 +75,48 @@ export default function LivingWithACat() {
           ← Journal
         </Link>
         <h1 className="font-[family-name:var(--font-cormorant)] text-6xl text-[#3D2E1E] font-light leading-tight mb-6">
-          Living & Decorating<br />With A Cat
+          Living & Decorating With A Cat
         </h1>
         <p className="text-[#8B7355] text-sm tracking-widest uppercase">By Rachel Dillard · Studio Dillard</p>
-      </header>
+      </div>
 
       {/* Intro */}
-      <section className="px-10 pb-16 max-w-3xl">
-        <p className="text-[#3D2E1E] text-lg leading-relaxed">
-          In college, my roommate and I once spent an entire afternoon color-matching a couch to hide cat scratch marks. That was the moment I decided there had to be a better way — furniture that could actually withstand cat ownership without sacrificing style. It took some trial and error, but I eventually found the strategies that made it work.
+      <div className="max-w-5xl mx-auto px-8 pb-16">
+        <p className="text-[#3D2E1E] text-lg leading-relaxed mb-6">
+          The day my roommate and I spent hours color-matching a hideous brown & grey couch in our furnished college apartment to cover my cat's scratch marks, knowing we'd owe a small fortune if we failed, I made myself a promise: never again.
         </p>
-      </section>
+        <p className="text-[#3D2E1E] text-lg leading-relaxed mb-6">
+          I decided that from then on, I'd choose furniture that could survive life with a cat. What I didn't realize at the time was how tricky that would be! Especially when most cat furniture back then didn't fit the cozy, calm aesthetic I wanted for my home.
+        </p>
+        <p className="text-[#3D2E1E] text-lg leading-relaxed mb-6">
+          Since then, I've spent years searching for beautiful, functional pieces that both I and my cat could love. Adding more scratchers definitely helped, but it wasn't the whole solution. Along the way, I've learned a lot about creating a home that feels inviting, stylish, and still totally cat-friendly.
+        </p>
+        <p className="text-[#3D2E1E] text-lg leading-relaxed">
+          So whether you're welcoming your first kitten or already living with a seasoned biscuit-maker, here are my top five tips for decorating a space you and your furry roommate can enjoy together.
+        </p>
+      </div>
 
       {/* Furlough photos */}
-      <section className="px-10 pb-20 flex gap-6 max-w-3xl">
-        <div className="flex-1">
+      <div className="max-w-5xl mx-auto px-8 pb-6">
+        <p className="font-[family-name:var(--font-cormorant)] text-xl italic text-[#8B7355] mb-10">
+          Meet Furlough — the CEO and inspiration behind this post.
+        </p>
+        <div className="grid grid-cols-2 gap-6">
           <img
             src="/images/cat-article-1.png"
             alt="Furlough"
-            className="w-full object-cover bg-[#F5F0E8]"
+            className="w-full object-cover rounded-sm"
           />
-        </div>
-        <div className="flex-1">
           <img
             src="/images/cat-article-2.png"
             alt="Furlough in a box"
-            className="w-full object-cover bg-[#F5F0E8]"
+            className="w-full object-cover rounded-sm"
           />
         </div>
-      </section>
-      <section className="px-10 pb-16 max-w-3xl">
-        <p className="font-[family-name:var(--font-cormorant)] text-xl italic text-[#8B7355]">
-          Furlough — the CEO and inspiration behind this post.
-        </p>
-      </section>
+      </div>
 
       {/* Tips */}
-      <section className="px-10 pb-28 max-w-3xl">
+      <div className="max-w-5xl mx-auto px-8 py-20">
         <h2 className="font-[family-name:var(--font-cormorant)] text-4xl text-[#3D2E1E] font-light mb-14">
           Five Tips for Cat-Friendly Decorating
         </h2>
@@ -126,7 +131,7 @@ export default function LivingWithACat() {
             </div>
           ))}
         </div>
-      </section>
+      </div>
 
       {/* Footer */}
       <footer className="bg-[#3D2E1E] py-20 px-10">
